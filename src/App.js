@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './Components/Home';
+import {DataContextProvider} from './Components/myContext'
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Delete from './Components/Delete';
+import Read from './Components/Read';
+import Edit from './Components/Edit';
+import UserCreate from './Components/UserCreate';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{margin:"0 auto",maxWidth:"80%",marginTop:"10px"}}>
+      <DataContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/delete/:id" element={<Delete />} />
+            <Route path="/read/:id" element={<Read />} />
+            <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/usercreate" element={<UserCreate />} />
+          </Routes>
+        </BrowserRouter>
+      </DataContextProvider>
     </div>
   );
 }
